@@ -20,6 +20,8 @@ const logger = (req, res, next) => {
 app.use(logger)
 
 //initialise database with files
+updateImagesDatabase(imagesDir)
+
 setInterval(() => 
   updateImagesDatabase(imagesDir)
 , TIME_INTERVAL)
