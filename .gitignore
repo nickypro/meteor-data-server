@@ -1,0 +1,38 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/dist
+/build
+/images
+/credentials
+
+# misc
+/.cache
+.DS_Store
+
+# credentials and keys
+scraperApiKeys.js
+cert.pem
+key.pem
+db.sql
+configAuth.json
+
+# environmental variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+#logging
+debug.log
+scrape.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
