@@ -6,7 +6,7 @@ const updateImagesDatabase = require('./mysql-functions/updateImagesDatabase')
 require('dotenv').config({ path: path.resolve(__dirname, './.env') })
 
 //CONFIGURE folder where images are stored (can replace) and how often to run
-const imagesDir = path.join(__dirname, "/images/") 
+const imagesDir = process.env.IMAGE_PATH || path.join(__dirname, "/images/") 
 const TIME_INTERVAL = 12 * 3600 * 1000 /* milliseconds = every 12 hours*/
 
 //initialise node express app
