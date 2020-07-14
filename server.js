@@ -17,7 +17,7 @@ setInterval(() =>
 , TIME_INTERVAL)
 
 // make serving files optional
-if ( !process.env.DO_NOT_SERVE ) {
+if ( process.env.SERVE && process.env.SERVE != 0) {
 
   //initialise node express app
   const app = express();

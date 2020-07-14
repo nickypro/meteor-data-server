@@ -18,10 +18,10 @@ Looks for RMS-style image files from AllSky/RaspberryPi, parses the camera name 
 ```
 
 - create a .env file and add `IMAGE_PATH=/path/to/images/` (or if using systemd add `Environment=IMAGE_PATH=/path/to/images/`)
-- optional: if serving files, you can change port using `PORT=8080` or whatever you want
 - run the process with either `node server.js` or `npm start` (or create a systemd process with /usr/bin/node etc...)
 
 ## Remarks
-This uses node express file serving, but that could also be replaced with nginx or something else, just make the paths stay the same.
-to remove the file serving, add the environmental variable
-`DO_NOT_SERVE=1`
+- optional: if serving files, you can change port using `PORT=8080` or whatever you want
+This can also use nodejs for file serving, but nginx or something else is probably better to use in the long run, as long as the paths stay the same.
+to add the file serving, add the environmental variable
+`SERVE=1`
