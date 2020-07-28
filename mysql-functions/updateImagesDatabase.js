@@ -18,7 +18,7 @@ function updateImagesDatabase(directoryPath = path.join(__dirname, "/images")) {
   let array = []
 
   //listing all folders
-  while (folders.length > 0) {
+  while (folders.length > 0) try {
     //we look at the last folder
     const folder = folders.pop()
     
@@ -32,6 +32,8 @@ function updateImagesDatabase(directoryPath = path.join(__dirname, "/images")) {
     
     //add new files to the array
     array = [...array, ...parseFilesInFolder(folder, folderPath(folder))] 
+  } catch (err) {
+    console.log(err.message)
   }
 
   console.log(`Array: ${array.length}`)
