@@ -9,6 +9,8 @@ const {Image, DayWithImage, LabelPoints} = require('./sequelize')
 
 //define function to add items to database:
 function addArrayToDatabase( array ) {
+  console.log(`Pushing to database - ${array.length} entries`)
+
   Image.sync().then(() => 
     Image.bulkCreate(array, {
       updateOnDuplicate: ["date"] 
