@@ -38,7 +38,7 @@ function parseFilesInFolder(folder, folderPath) {
     }
 
     //console.log(folder, file)
-    array.push({filePath: `/${folder}/${file}`, date, camera})
+    array.push({filePath: `/${folder}/${file}`,fileName: file, date, camera})
   })
 
   console.log(`Read ${array.length} files from folder ${folder}`)

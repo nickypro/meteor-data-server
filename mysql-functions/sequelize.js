@@ -17,6 +17,9 @@ sequelize
 
 const Image = sequelize.define('image', {
   //folder, file, path: folderPath(folder), date, camera}
+  fileName: {
+    type: Sequelize.STRING,
+  },
   filePath: {
     type: Sequelize.STRING,
     primaryKey: true,
@@ -44,7 +47,7 @@ const Image = sequelize.define('image', {
   indexes:[
     {
       unique: true,
-      fields:['filePath']
+      fields:['fileName']
     },{
       unique: false,
       fields:['date']
