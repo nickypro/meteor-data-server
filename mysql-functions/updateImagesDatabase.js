@@ -13,7 +13,7 @@ function addArrayToDatabase( array ) {
 
   Image.sync().then(() => 
     Image.bulkCreate(array, {
-      updateOnDuplicate: ["date", "filePath"] 
+      updateOnDuplicate: ["date", "filePath", "fileName"] 
     })
   )
 
