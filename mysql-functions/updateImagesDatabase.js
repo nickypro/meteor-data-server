@@ -1,5 +1,5 @@
 //requiring path and fs modules
-const DATABASE_UPDATE_LENGTH = 1000;
+const DATABASE_UPDATE_LENGTH = 1;
 const path = require('path');
 const fs = require('fs');
 const dateFormat = require('dateformat')
