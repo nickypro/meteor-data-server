@@ -20,6 +20,8 @@ echo "exporting to $output"
 TEMPFILE=/tmp/recent_txt_files.txt
 
 rm $TEMPFILE 
+touch $TEMPFILE
+chmod 777 $TEMPFILE
 
 find $files -mtime -$MAXDAYS -name "*.txt" -ls > $TEMPFILE
 
