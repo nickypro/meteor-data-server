@@ -17,7 +17,7 @@ echo "exporting to $output"
 
 #files=/mnt/backup1/sam/AllSky/IE0002*/
 #output=/mnt/massive-stars/meteors-data.ap.dias.ie/Dunsink
-TEMPFILE=/tmp/recent_txt_files.txt
+TEMPFILE=$(mktemp /tmp/recent_txt_files.XXXXXXXX.txt)
 
 rm $TEMPFILE 
 touch $TEMPFILE
@@ -51,3 +51,5 @@ do
 	fi
 
 done
+
+rm $TEMPFILE 
