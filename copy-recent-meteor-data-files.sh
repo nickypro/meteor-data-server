@@ -26,9 +26,6 @@ echo "exporting to $output"
 #files=/mnt/backup1/sam/AllSky/IE0002*/
 #output=/mnt/massive-stars/meteors-data.ap.dias.ie/Dunsink
 TEMPFILE=$(mktemp /tmp/recent_txt_files.XXXXXXXX.txt)
-
-rm $TEMPFILE 
-touch $TEMPFILE
 chmod 777 $TEMPFILE
 
 find $files -mtime -$MAXDAYS -name "*.txt" -ls > $TEMPFILE
