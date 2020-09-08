@@ -17,6 +17,7 @@ then
 	echo " - Usage: ./convert-recent-meteors.sh \"/INPUT/FOLDER(S*)/\" /OUTPUT/FOLDER/"
 	echo " - Example: ./convert-recent-meteors.sh \"/mnt/backup1/sam/AllSky/IE0002*/\" \"/mnt/massive-stars/meteors-data.ap.dias.ie/Dunsink\""
 	echo " - ENSURE that if using wildcard /*/ that the input is wrapped in quotation marks"
+	echo " - can also add a flag for -d MAXDAYS"
 	exit 1
 fi;
 
