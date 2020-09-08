@@ -6,7 +6,7 @@ MAXDAYS=2
 if [[ -z $files || -z $output ]];
 then 
 	echo `date`" - Incorrect Usage"
-	echo " - Usage: ./convert-recent-meteors.sh /PATH/TO/INPUTFOLDER(S*)/ /PATH/TO/OUTPUT/FOLDER/"
+	echo " - Usage: ./convert-recent-meteors.sh \"/INPUT/FOLDER(S*)/\" /OUTPUT/FOLDER/"
 	echo " - Example: ./convert-recent-meteors.sh \"/mnt/backup1/sam/AllSky/IE0002*/\" \"/mnt/massive-stars/meteors-data.ap.dias.ie/Dunsink\""
 	echo " - ENSURE that if using wildcard /*/ that the input is wrapped in quotation marks"
 	exit 1
@@ -17,14 +17,14 @@ echo "exporting to $output"
 
 #files=/mnt/backup1/sam/AllSky/IE0002*/
 #output=/mnt/massive-stars/meteors-data.ap.dias.ie/Dunsink
+TEMPFILE=$(mktemp /tmp/recent_fits_files.XXXXXXXX.txt)
+chmod 777 $TEMPFILE 
 
-rm /tmp/recent_fits_files.txt
+find $files -mtime -$MAXDAYS -name "*.fits" -ls > $TEMPFILE
 
-find $files -mtime -$MAXDAYS -name "*.fits" -ls > /tmp/recent_fits_files.txt
+stat $TEMPFILE
 
-stat /tmp/recent_fits_files.txt
-
-for file in `cat /tmp/recent_fits_files.txt | awk '{print $11}' `;
+for file in `cat $TEMPFILE | awk '{print $11}' `;
 do
      	filename=$(basename -- "$file")
 	filedir=$(dirname "$file")
@@ -41,8 +41,7 @@ do
 		echo "Creating and populating folder $folder"
 
         	mkdir -p "$folder"
-		tempdir="/tmp/fits2png"
-        	mkdir -p "$tempdir"
+		    	tempdir=$(mktemp -d /tmp/fits2png-XXXXXXXX)
 
 		cp $filedir/*.fits "$tempdir"
 	
@@ -63,19 +62,21 @@ do
 	else
 		mkdir -p "$folder"
 
-		mkdir -p /tmp/meteor-fits-2-png/
 
-		cp "$file" "/tmp/meteor-fits-2-png/"
+		tempdir=$(mktemp -d /tmp/fits2png-XXXXXXXX)
+		
+		cp "$file" "$tempdir/"
 
-        	python -m Utils.BatchFFtoImage "/tmp/meteor-fits-2-png/" png
+        	python -m Utils.BatchFFtoImage "$tempdir" png
 
-        	mv /tmp/meteor-fits-2-png/*.png "$folder"
+        	mv $tempdir/*.png "$folder"
 	
 		echo " - Saving to $folder"
 
-        	rm -R "/tmp/meteor-fits-2-png"
+        	rm -R "$tempdir"
 
 	fi
 
-        #mv $file/*.png ${file:46:8}
 done
+
+rm $TEMPFILE
