@@ -3,6 +3,14 @@ files=$1
 output=$2
 MAXDAYS=2
 
+while getopts d option
+do
+case "${option}"
+in
+d) MAXDAYS=${OPTARG};;
+esac
+done
+
 if [[ -z $files || -z $output ]];
 then 
 	echo `date`" - Incorrect Usage"
