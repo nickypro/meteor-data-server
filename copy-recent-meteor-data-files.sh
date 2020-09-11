@@ -3,12 +3,13 @@ files=$1
 output=$2
 MAXDAYS=2
 
-while getopts d option
-do
-case "${option}"
-in
-d) MAXDAYS=${OPTARG};;
-esac
+while [ -n "$1" ]; do
+	case "$1" in
+	-d)     MAXDAYS="$2"
+		echo "Using MAXDAYS=$MAXDAYS"
+		;;
+	esac
+	shift
 done
 
 if [[ -z $files || -z $output ]];
@@ -17,7 +18,7 @@ then
 	echo " - Usage: ./copy-recent-meteor-data-files.sh /input/path(s*)/ /output/folder/"
 	echo " - Example: ./copy-recent-meteor-data-files.sh \"/mnt/backup1/sam/\" \"/mnt/massive-stars/meteors-data.ap.dias.ie/DataFiles\""
 	echo " - ENSURE that if using wildcard /*/ that the input is wrapped in quotation marks"
-	echo " - can also add a flag for -d MAXDAYS"
+	echo " - can also add a flag for -d MAXDAYS at the end"
 	exit 1
 fi;
 
