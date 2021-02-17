@@ -1,5 +1,6 @@
 const fs = require('fs');
-const ParseDateFromImageFileName = require('./parseDateFromImageFileName')
+const parseDateFromImageFileName = require('./parseDateFromImageFileName');
+
 //parses information from each file in a folder
 function parseFilesInFolder(folder, folderPath) {
 
@@ -26,3 +27,4 @@ function parseFilesInFolder(folder, folderPath) {
 }
 
 module.exports = parseFilesInFolder
+

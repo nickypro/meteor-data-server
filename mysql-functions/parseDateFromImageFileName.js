@@ -17,3 +17,6 @@ function parseDateFromImageFileName(file) {
 
   return {}
 }
+
+module.exports = parseDateFromImageFileName
+
